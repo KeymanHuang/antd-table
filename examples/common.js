@@ -22698,17 +22698,13 @@
 	    if (expandIconAsCell && fixed !== 'right') {
 	      rows[0].unshift({
 	        key: 'rc-table-expandIconAsCell',
-	        className: prefixCls + '-expand-icon-th ' + prefixCls + '-rowspan-' + rows.length,
+	        className: prefixCls + '-expand-icon-th',
 	        title: '',
 	        rowSpan: rows.length
 	      });
 	    }
 	
-	    var fixedColumnsHeadRowsHeight = this.state.fixedColumnsHeadRowsHeight;
-	
-	    var trStyle = fixedColumnsHeadRowsHeight[0] && columns ? {
-	      height: fixedColumnsHeadRowsHeight[0]
-	    } : null;
+	    var trStyle = this.getHeaderRowStyle(columns, rows);
 	
 	    return showHeader ? _react2.default.createElement(_TableHeader2.default, {
 	      prefixCls: prefixCls,
@@ -22721,8 +22717,6 @@
 	
 	    var currentRow = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
 	    var rows = arguments[2];
-	    var prefixCls = this.props.prefixCls;
-	
 	
 	    rows = rows || [];
 	    rows[currentRow] = rows[currentRow] || [];
@@ -22746,13 +22740,14 @@
 	      }
 	      if ('rowSpan' in column) {
 	        cell.rowSpan = column.rowSpan;
-	        cell.className += ' ' + prefixCls + '-rowspan-' + cell.rowSpan;
 	      }
 	      if (cell.colSpan !== 0) {
 	        rows[currentRow].push(cell);
 	      }
 	    });
-	    return rows;
+	    return rows.filter(function (row) {
+	      return row.length > 0;
+	    });
 	  },
 	  getExpandedRow: function getExpandedRow(key, content, visible, className, fixed) {
 	    var _this2 = this;
@@ -23100,6 +23095,18 @@
 	  getLeafColumnsCount: function getLeafColumnsCount(columns) {
 	    return this.getLeafColumns(columns).length;
 	  },
+	  getHeaderRowStyle: function getHeaderRowStyle(columns, rows) {
+	    var fixedColumnsHeadRowsHeight = this.state.fixedColumnsHeadRowsHeight;
+	
+	    var headerHeight = fixedColumnsHeadRowsHeight[0];
+	    if (headerHeight && columns) {
+	      if (headerHeight === 'auto') {
+	        return { height: 'auto' };
+	      }
+	      return { height: headerHeight / rows.length };
+	    }
+	    return null;
+	  },
 	
 	
 	  // add appropriate rowspan and colspan to column
@@ -23145,11 +23152,9 @@
 	    return grouped;
 	  },
 	  syncFixedTableRowHeight: function syncFixedTableRowHeight() {
-	    var _this6 = this;
-	
 	    var prefixCls = this.props.prefixCls;
 	
-	    var headRows = this.refs.headTable ? this.refs.headTable.querySelectorAll('tr') : this.refs.bodyTable.querySelectorAll('thead > tr');
+	    var headRows = this.refs.headTable ? this.refs.headTable.querySelectorAll('thead') : this.refs.bodyTable.querySelectorAll('thead');
 	    var bodyRows = this.refs.bodyTable.querySelectorAll('.' + prefixCls + '-row') || [];
 	    var fixedColumnsHeadRowsHeight = [].map.call(headRows, function (row) {
 	      return row.getBoundingClientRect().height || 'auto';
@@ -23160,11 +23165,9 @@
 	    if ((0, _shallowequal2.default)(this.state.fixedColumnsHeadRowsHeight, fixedColumnsHeadRowsHeight) && (0, _shallowequal2.default)(this.state.fixedColumnsBodyRowsHeight, fixedColumnsBodyRowsHeight)) {
 	      return;
 	    }
-	    this.timer = setTimeout(function () {
-	      _this6.setState({
-	        fixedColumnsHeadRowsHeight: fixedColumnsHeadRowsHeight,
-	        fixedColumnsBodyRowsHeight: fixedColumnsBodyRowsHeight
-	      });
+	    this.setState({
+	      fixedColumnsHeadRowsHeight: fixedColumnsHeadRowsHeight,
+	      fixedColumnsBodyRowsHeight: fixedColumnsBodyRowsHeight
 	    });
 	  },
 	  resetScrollY: function resetScrollY() {
@@ -23176,10 +23179,10 @@
 	    }
 	  },
 	  findExpandedRow: function findExpandedRow(record) {
-	    var _this7 = this;
+	    var _this6 = this;
 	
 	    var rows = this.getExpandedRows().filter(function (i) {
-	      return i === _this7.getRowKey(record);
+	      return i === _this6.getRowKey(record);
 	    });
 	    return rows[0];
 	  },
