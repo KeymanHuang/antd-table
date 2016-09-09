@@ -17,7 +17,7 @@ webpackJsonp([10],{
 	var React = __webpack_require__(4);
 	var ReactDOM = __webpack_require__(39);
 	var Table = __webpack_require__(182);
-	__webpack_require__(205);
+	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../assets/index.less\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 	__webpack_require__(259);
 	
 	var columns = [{
@@ -102,7 +102,11 @@ webpackJsonp([10],{
 /***/ },
 
 /***/ 259:
-205
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ }
 
 });
 //# sourceMappingURL=grouping-columns.js.map

@@ -17,7 +17,7 @@ webpackJsonp([11],{
 	var React = __webpack_require__(4);
 	var ReactDOM = __webpack_require__(39);
 	var Table = __webpack_require__(182);
-	__webpack_require__(205);
+	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../assets/index.less\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 	
 	var columns = [{ title: 'title1', dataIndex: 'a', key: 'a', width: 100 }, { id: '123', title: 'title2', dataIndex: 'b', key: 'b', width: 100 }, { title: 'title3', dataIndex: 'c', key: 'c', width: 200 }, {
 	  title: 'Operations', dataIndex: '', key: 'd', render: function render() {
