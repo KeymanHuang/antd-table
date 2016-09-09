@@ -17,6 +17,10 @@
     "prepublish": "rc-tools run guard"
   },
   "keywords": [],
+  "files": [
+    "lib",
+    "assets/*.css"
+  ],
   "author": "",
   "license": "MIT",
   "config": {
