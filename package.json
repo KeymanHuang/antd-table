@@ -1,8 +1,8 @@
 {
   "name": "antd-table",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "./lib/index.js",
   "scripts": {
     "test": "rc-tools run test",
     "build": "rc-tools run build",
