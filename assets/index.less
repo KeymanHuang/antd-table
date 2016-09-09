@@ -3,9 +3,6 @@
 
 @table-prefix-cls: ant-table;
 @table-head-background-color: #f7f7f7;
-@vertical-padding: 16px;
-@horizontal-padding: 8px;
-@row-height: @font-size-base * @line-height-base + @vertical-padding * 2;
 
 .@{table-prefix-cls} {
   font-size: @font-size-base;
@@ -68,7 +65,7 @@
   }
 
   &-footer {
-    padding: @vertical-padding @horizontal-padding;
+    padding: 16px 8px;
     background: @table-head-background-color;
     position: relative;
     z-index: 2;
@@ -110,7 +107,7 @@
 
   &-thead > tr > th,
   &-tbody > tr > td {
-    padding: @vertical-padding @horizontal-padding;
+    padding: 16px 8px;
     word-break: break-all;
   }
 
@@ -272,6 +269,9 @@
     .@{table-prefix-cls}-thead > tr > th,
     .@{table-prefix-cls}-tbody > tr > td {
       border-right: 1px solid @border-color-split;
+    }
+    .@{table-prefix-cls}-thead > tr:first-child > th,
+    .@{table-prefix-cls}-tbody > tr > td {
       &:last-child {
         border-right: 0;
       }
@@ -450,15 +450,6 @@
     table {
       width: auto;
       background: #fff;
-    }
-
-    .generate-rowspan(10);
-
-    .generate-rowspan(@n, @i: 1) when (@i =< @n) {
-      th.@{table-prefix-cls}-rowspan-@{i} {
-        height: @row-height * @i;
-      }
-      .generate-rowspan(@n, (@i + 1));
     }
   }
 
