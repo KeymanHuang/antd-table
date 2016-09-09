@@ -1,0 +1,37 @@
+{
+  "name": "antd-table",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "rc-tools run test",
+    "build": "rc-tools run build",
+    "gh-pages": "rc-tools run gh-pages",
+    "start": "rc-tools run server",
+    "pub": "rc-tools run update-self && rc-tools run pub",
+    "lint": "rc-tools run lint",
+    "karma": "rc-tools run karma",
+    "saucelabs": "rc-tools run saucelabs",
+    "chrome-test": "rc-tools run chrome-test",
+    "coverage": "rc-tools run coverage",
+    "prepublish": "rc-tools run guard"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "config": {
+    "port": 8000
+  },
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "object-assign": "^4.1.0"
+  },
+  "peerDependencies": {
+    "antd": "^1.0.0"
+  },
+  "devDependencies": {
+    "rc-tools": "^5.6.12",
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1"
+  }
+}
