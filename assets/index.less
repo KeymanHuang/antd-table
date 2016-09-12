@@ -1,5 +1,5 @@
-@import "./node_modules/antd/lib/style/themes/default";
-@import "./node_modules/antd/lib/style/mixins/index";
+@import "../node_modules/antd/lib/style/themes/default";
+@import "../node_modules/antd/lib/style/mixins/index";
 
 @table-prefix-cls: ant-table;
 @table-head-background-color: #f7f7f7;
@@ -255,7 +255,7 @@
       border-bottom: 1px solid @border-color-split;
     }
 
-    &.@{table-prefix-cls}-empty .@{table-prefix-cls}-thead > tr > th {
+    &.@{table-prefix-cls}-empty .@{table-prefix-cls}-thead > tr:last-child > th {
       border-bottom: 0;
     }
 
