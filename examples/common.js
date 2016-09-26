@@ -22835,7 +22835,7 @@
 	      var Row = _TableRow2.default;
 	
 	      if (this.props.rowRender) {
-	        Row = this.props.rowRender(_TableRow2.default);
+	        Row = this.props.rowRender(_TableRow2.default, record);
 	      }
 	
 	      rst.push(_react2.default.createElement(Row, _extends({
