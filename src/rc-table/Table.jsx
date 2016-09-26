@@ -319,7 +319,7 @@ const Table = React.createClass({
       let Row = TableRow
 
       if (this.props.rowRender) {
-        Row = this.props.rowRender(TableRow)
+        Row = this.props.rowRender(TableRow, record)
       }
 
       rst.push(
