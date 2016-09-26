@@ -22535,7 +22535,8 @@
 	    emptyText: _react.PropTypes.func,
 	    scroll: _react.PropTypes.object,
 	    rowRef: _react.PropTypes.func,
-	    getBodyWrapper: _react.PropTypes.func
+	    getBodyWrapper: _react.PropTypes.func,
+	    rowRender: _react.PropTypes.func
 	  },
 	
 	  getDefaultProps: function getDefaultProps() {
@@ -22831,7 +22832,13 @@
 	
 	      var leafColumns = this.getLeafColumns(columns || props.columns);
 	
-	      rst.push(_react2.default.createElement(_TableRow2.default, _extends({
+	      var Row = _TableRow2.default;
+	
+	      if (this.props.rowRender) {
+	        Row = this.props.rowRender(_TableRow2.default);
+	      }
+	
+	      rst.push(_react2.default.createElement(Row, _extends({
 	        indent: indent,
 	        indentSize: props.indentSize,
 	        needIndentSpaced: needIndentSpaced,
