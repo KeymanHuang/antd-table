@@ -34,6 +34,7 @@ const Table = React.createClass({
     scroll: PropTypes.object,
     rowRef: PropTypes.func,
     getBodyWrapper: PropTypes.func,
+    rowRender: PropTypes.func,
   },
 
   getDefaultProps() {
@@ -315,8 +316,14 @@ const Table = React.createClass({
 
       const leafColumns = this.getLeafColumns(columns || props.columns);
 
+      let Row = TableRow
+
+      if (this.props.rowRender) {
+        Row = this.props.rowRender(TableRow)
+      }
+
       rst.push(
-        <TableRow
+        <Row
           indent={indent}
           indentSize={props.indentSize}
           needIndentSpaced={needIndentSpaced}
